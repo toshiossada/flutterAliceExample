@@ -1,6 +1,7 @@
 import 'package:alice_lightweight/alice.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:example/app/modules/home/home_module.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'commons/adapters/http_client/dio_adapter.dart';
@@ -16,7 +17,7 @@ class AppModule extends Module {
               dio: i(),
               insterceptors: [
                 i<CustomInterceptors>(),
-                i<Alice>().getDioInterceptor(),
+                ...(kDebugMode) ? [i<Alice>().getDioInterceptor()] : []
               ],
             )),
         Bind.factory<CustomInterceptors>((i) => CustomInterceptors(

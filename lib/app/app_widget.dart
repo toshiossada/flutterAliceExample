@@ -15,6 +15,7 @@ class _AppWidgetState extends State<AppWidget> {
   @override
   Widget build(BuildContext context) {
     final _alice = Modular.get<Alice>();
+
     final _localNotificationService = Modular.get<LocalNotificationService>();
     _localNotificationService.init();
     Modular.setNavigatorKey(
